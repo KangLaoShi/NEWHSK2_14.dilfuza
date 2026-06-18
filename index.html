@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Volume2, ChevronRight, ChevronLeft, RotateCcw, CheckCircle, XCircle, GraduationCap } from 'lucide-react';
 
 // --- DATA ---
@@ -410,6 +410,15 @@ const Grammar = () => {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('Lug\'at');
+
+  // Fix character encoding issues during Canvas preview
+  useEffect(() => {
+    if (!document.querySelector('meta[charset]')) {
+      const meta = document.createElement('meta');
+      meta.setAttribute('charset', 'utf-8');
+      document.head.prepend(meta);
+    }
+  }, []);
 
   const tabs = [
     'Lug\'at', 
